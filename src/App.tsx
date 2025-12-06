@@ -9,6 +9,7 @@ import {useState} from 'react';
 import type {IMenu} from './types';
 import Orders from './components/Orders/Orders.tsx';
 import MenuList from './components/Menu/MenuList.tsx';
+import OrderItems from './components/Orders/OrderItems/OrderItems.tsx';
 
 const App = () => {
 
@@ -23,19 +24,49 @@ const App = () => {
 
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
-  const addProduct = () => {
-      console.log('Продукт добавлен!');
-  };
+    const addProduct = (name: string) => {
+
+        setMenu(prevState => {
+            const newProduct = prevState.map(item =>
+                item.name === name ? {...item, count: item.count + 1}: item
+            );
+
+            const newTotal: number = newProduct.reduce((acc, item) => {
+                return acc + item.price * item.count;
+            },0);
+
+            setTotalPrice(newTotal)
+            return newProduct;
+        });
+    };
+
+    const deleteProduct = (name: string) => {
+        setMenu(prevState => {
+            const newProduct = prevState.map(item =>
+                item.name === name ? {...item, count: Math.max(item.count - 1, 0)}: item
+            );
+
+            const newTotal: number = newProduct.reduce((acc, item)=> {
+                return acc + item.price * item.count;
+            }, 0)
+
+            setTotalPrice(newTotal);
+            return newProduct;
+        });
+    };
+
+    console.log(menu);
 
 
   return (
     <>
         <div className="container">
+
             <Orders
-                className='order-details'
+                className='orders'
                 title='Order Details'
                 text={`${totalPrice} KGS`}
-            >
+            > <OrderItems menu={menu} clickDeleteProduct={deleteProduct} />
             </Orders>
 
             <MenuList
