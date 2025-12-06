@@ -7,8 +7,8 @@ import teaImg from './assets/tea.png';
 import './App.css';
 import {useState} from 'react';
 import type {IMenu} from './types';
-import Label from './components/Label/Label.tsx';
-import Button from './components/Button/Button.tsx';
+import Orders from './components/Orders/Orders.tsx';
+import MenuList from './components/Menu/MenuList.tsx';
 
 const App = () => {
 
@@ -23,44 +23,25 @@ const App = () => {
 
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
+  const addProduct = () => {
+      console.log('Продукт добавлен!');
+  };
+
+
   return (
     <>
         <div className="container">
+            <Orders
+                className='order-details'
+                title='Order Details'
+                text={`${totalPrice} KGS`}
+            >
+            </Orders>
 
-            <div className='order-details'>
-                <h3>Order Details</h3>
-                <div className='orders'>
-                    <Label className='item-name-order' text={menu[0].name}/>
-                    <Label className='item-count-order' text={`${menu[0].count}`}/>
-                    <Label className='item-price-order' text={`${menu[0].price}`}/>
-                </div>
-            </div>
-
-            <div className='add-items'>
-                <h3>Add items</h3>
-                <div className='items-grid'>
-                    {menu.map((item) => {
-                        return (
-                            <Button
-                                className='item-card'
-                                type='button'
-
-                            >
-                                <img
-                                    width='100px'
-                                    src={item.image}
-                                    alt={item.name}
-                                />
-                                <div className="item-text-content">
-                                    <span className='item-name'>{item.name}</span>
-                                    <span className='item-price'>{item.price}</span>
-                                </div>
-                            </Button>
-                        )
-                    })}
-                </div>
-            </div>
-
+            <MenuList
+                menu={menu}
+                addProduct={addProduct}
+            />
         </div>
     </>
   )
