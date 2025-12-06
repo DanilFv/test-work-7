@@ -1,0 +1,45 @@
+.order-items {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.item-name-order {
+   margin-right: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.item-count-order {
+  margin: 20px;
+  font-size: 16px;
+}
+
+.item-price-order {
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.none-items {
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  margin: 10px;
+}
+
+.delete-btn {
+  font-weight: bolder;
+  font-size: 21px;
+  background: none;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor:  pointer;
+}
+
+.delete-btn:active {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.delete-btn:hover {
+    background-color: #eee;
+}

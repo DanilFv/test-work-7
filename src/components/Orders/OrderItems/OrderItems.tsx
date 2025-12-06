@@ -11,7 +11,7 @@ interface Props {
 
 const OrderItems:React.FC<Props> = ({menu, clickDeleteProduct}) => {
 
-    const selectedProduct = menu.filter(item => item.count > 0);
+    const selectedProduct: IMenu[] = menu.filter(item => item.count > 0);
 
     return (
         <>
